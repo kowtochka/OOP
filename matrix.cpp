@@ -130,7 +130,6 @@ int Matrix::sum() const
 int Matrix::getRows() const { return rows_; }
 int Matrix::getCols() const { return cols_; }
 
-// ДЗ 1: Метод транспонирования
 Matrix Matrix::transpose() const
 {
     Matrix result(cols_, rows_);
