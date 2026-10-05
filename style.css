@@ -1,0 +1,24 @@
+/* Селектор по тегу */
+body {
+    background-color: #f0f4f8;
+    color: #333333;
+}
+
+/* Селектор по id */
+#main-title {
+    color: #e67e22;
+}
+
+/* Селектор по классу */
+.block {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* :hover */
+a:hover, button:hover {
+    color: #e67e22;
+    background-color: #e0e0e0;
+}
