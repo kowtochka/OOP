@@ -1,28 +1,31 @@
-#pragma once
-#include <stdexcept>
+#ifndef MATRIX_H
+#define MATRIX_H
 
-class Matrix
-{
+class Matrix {
+private:
+    int** data_;
+    int rows_;
+    int cols_;
+
+    void allocate(int rows, int cols);
+    void copyFrom(const Matrix& other);
+    void freeMemory();
+
 public:
     Matrix();
-    explicit Matrix(int size);
     Matrix(int rows, int cols);
+    Matrix(const Matrix& other);
     ~Matrix();
 
-    int get(int i, int j) const;
-    void set(int i, int j, int value);
+    Matrix& operator=(const Matrix& other);
 
-    void inputFromKeyboard();
     void fillRandom();
+    void set(int row, int col, int value);
+    int get(int row, int cols) const;
     void print() const;
-    int sum() const;
 
     int getRows() const;
     int getCols() const;
-    Matrix transpose() const;
-
-private:
-    int **data_;
-    int rows_;
-    int cols_;
 };
+
+#endif

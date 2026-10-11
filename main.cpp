@@ -1,66 +1,44 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Matrix.h"
+#include "matrix.h"
 
 int main()
 {
-    srand(time(0));
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    Matrix m1;
-    Matrix m2(3);
-    Matrix m3(3, 4);
-    Matrix m4(2, 3);
+    Matrix a(3, 4);
+    a.fillRandom();
+    std::cout << "Matrix a:\n";
+    a.print();
 
-    std::cout << "--- M2 (Единичная 3x3) ---\n";
-    m2.print();
-    std::cout << "\n--- M3 (Нули 3x4) ---\n";
-    m3.print();
-    std::cout << "\n--- M4 (Нули 2x3) ---\n";
-    m4.print();
+    Matrix b = a;
 
-    for (int i = 0; i < m2.getRows(); ++i)
-    {
-        for (int j = 0; j < m2.getCols(); ++j)
-        {
-            m2.set(i, j, i * j);
-        }
-    }
-    std::cout << "\n--- M2 после заполнения (i * j) ---\n";
-    m2.print();
+    b.set(0, 0, 999);
+    std::cout << "\nAfter b.set(0, 0, 999):\n";
+    std::cout << "Matrix a:\n";
+    a.print();
+    std::cout << "Matrix b:\n";
+    b.print();
 
-    m3.fillRandom();
-    std::cout << "\n--- M3 (Случайные числа) ---\n";
-    m3.print();
+    Matrix c(2, 2);
+    c.fillRandom();
+    c = a;
 
-    m4.inputFromKeyboard();
-    std::cout << "\n--- M4 (Введенная пользователем) ---\n";
-    m4.print();
+    std::cout << "\nMatrix c after c = a:\n";
+    c.print();
 
-    std::cout << "\nСумма элементов M3: " << m3.sum() << "\n\n";
+    Matrix d, e;
+    d = e = a;
+    std::cout << "\nMatrix d,e after d = e = a:\n";
+    std::cout << "\nMatrix d:\n";
+    d.print();
+    std::cout << "\nMatrix e:\n";
+    e.print();
 
-    std::cout << "--- Демонстрация исключений ---\n";
-    try
-    {
-        Matrix bad(-1, 5);
-    }
-    catch (const std::invalid_argument &e)
-    {
-        std::cout << "Поймано исключение: " << e.what() << '\n';
-    }
-
-    try
-    {
-        m3.get(100, 100);
-    }
-    catch (const std::out_of_range &e)
-    {
-        std::cout << "Поймано исключение: " << e.what() << '\n';
-    }
-
-    std::cout << "\n--- M3 Транспонированная (4x3) ---\n";
-    Matrix m3_transposed = m3.transpose();
-    m3_transposed.print();
+    a = a;
+    std::cout << "\nMatrix a after a = a:\n";
+    a.print();
 
     return 0;
 }
